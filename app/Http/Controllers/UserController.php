@@ -8,21 +8,28 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Mail;
 use App\Mail\PasswordReset;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
     public function register(Request $request)
     {
-        // $plainPassword = $request->password;
-        // $password = bcrypt($request->password);
-        // $request->request->add(['password' => $password]);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:100',
+            'email'  => 'required|unique:users|max:50',
+            'pssword' => 'required|max:50',
+            'weight' => 'required|numeric|:between:1,999.99',
+            'height' => 'required|numeric|:between:1,999.99',
+            'planType' => 'required|in:Gratuito,Pago',
+            'goal' => 'required|in:Subir peso,Bajar peso,Aumento Masa Muscular'
+        ]);
 
-        // // create the user account 
-        // $created = User::create($request->all());
-        // $request->request->add(['password' => $plainPassword]);
-        // // login now..
-        // return $this->login($request);
+        if ($validator->fails()) {
+            return redirect('post/register')
+                ->withErrors($validator, 'register')
+                ->withInput();
+        }
 
         $user = new User();
         $user->name = $request->post('name');
@@ -37,13 +44,14 @@ class UserController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Success',
-            ]);
+            ], 201);
         }
         return response()->json([
             'success' => false,
             'message' => 'Fail',
         ]);
     }
+
     public function login(Request $request)
     {
         $input = $request->only('email', 'pssword');
@@ -113,79 +121,68 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        // $user = User::find($id);
+        $user = User::getCurrentUser($request);
 
         if (!$user) {
-            return response()->json(['errors'=>array(['code'=>404,'message'=>'No se encuentra un usuario con ese código.'])],404);
+            return response()->json(['errors' => array(['code' => 404, 'message' => 'No se encuentra un usuario con ese código.'])], 404);
         }
 
-        $name=$request->input('name');
-        $email=$request->input('email');
-        $pssword=$request->input('pssword');
-        $weight=$request->input('weight');
-        $height=$request->input('height');
-        $planType=$request->input('planType');
-        $goal=$request->input('goal');
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $pssword = $request->input('pssword');
+        $weight = $request->input('weight');
+        $height = $request->input('height');
+        $planType = $request->input('planType');
+        $goal = $request->input('goal');
 
-        if ($request->method() === 'PATCH')
-        {
+        if ($request->method() === 'PATCH') {
             $bandera = false;
-            
-            if ($name)
-            {
+
+            if ($name) {
                 $user->name = $name;
-                $bandera=true;
+                $bandera = true;
             }
 
-            if ($email)
-            {
+            if ($email) {
                 $user->email = $email;
-                $bandera=true;
+                $bandera = true;
             }
 
 
-            if ($pssword)
-            {
+            if ($pssword) {
                 $user->pssword = $pssword;
-                $bandera=true;
+                $bandera = true;
             }
 
-            if ($weight)
-            {
+            if ($weight) {
                 $user->weight = $weight;
-                $bandera=true;
+                $bandera = true;
             }
-            if ($height)
-            {
+            if ($height) {
                 $user->height = $height;
-                $bandera=true;
+                $bandera = true;
             }
 
-            if ($planType)
-            {
+            if ($planType) {
                 $user->planType = $planType;
-                $bandera=true;
+                $bandera = true;
             }
 
-            if ($goal)
-            {
+            if ($goal) {
                 $user->goal = $goal;
-                $bandera=true;
+                $bandera = true;
             }
 
-            if ($bandera)
-            {
+            if ($bandera) {
                 // Almacenamos en la base de datos el registro.
                 $user->save();
-                return response()->json(['status'=>'ok','data'=>$user], 200);
-            }
-            else
-            {
+                return response()->json(['status' => 'ok', 'data' => $user], 200);
+            } else {
                 // Se devuelve un array errors con los errores encontrados y cabecera HTTP 304 Not Modified – [No Modificada] Usado cuando el cacheo de encabezados HTTP está activo
                 // Este código 304 no devuelve ningún body, así que si quisiéramos que se mostrara el mensaje usaríamos un código 200 en su lugar.
-                return response()->json(['errors'=>array(['code'=>304,'message'=>'No se ha modificado ningún dato de user.'])],304);
+                return response()->json(['errors' => array(['code' => 304, 'message' => 'No se ha modificado ningún dato de user.'])], 304);
             }
         }
-
     }
 }
