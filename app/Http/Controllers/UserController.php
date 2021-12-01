@@ -15,6 +15,8 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
+        $variableJson = null;
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:100',
             'email'  => 'required|unique:users|max:50',
@@ -26,30 +28,33 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('post/register')
+            $variableJson = redirect('post/register')
                 ->withErrors($validator, 'register')
                 ->withInput();
-        }
+        } else {
+            $user = new User();
+            $user->name = $request->post('name');
+            $user->email = $request->post('email');
+            $user->pssword = $request->post('pssword');
+            $user->weight = $request->post('weight');
+            $user->height = $request->post('height');
+            $user->planType = $request->post('planType');
+            $user->goal = $request->post('goal');
 
-        $user = new User();
-        $user->name = $request->post('name');
-        $user->email = $request->post('email');
-        $user->pssword = $request->post('pssword');
-        $user->weight = $request->post('weight');
-        $user->height = $request->post('height');
-        $user->planType = $request->post('planType');
-        $user->goal = $request->post('goal');
-
-        if ($user->save()) {
-            return response()->json([
-                'success' => true,
-                'message' => 'Success',
-            ], 201);
+            if ($user->save()) {
+                $variableJson = response()->json([
+                    'success' => true,
+                    'message' => 'Success',
+                ], 201);
+            } else {
+                $variableJson = response()->json([
+                    'success' => false,
+                    'message' => 'Fail',
+                ]);
+            }
         }
-        return response()->json([
-            'success' => false,
-            'message' => 'Fail',
-        ]);
+        
+        return $variableJson;
     }
 
     public function login(Request $request)
