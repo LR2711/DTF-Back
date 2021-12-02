@@ -43,7 +43,26 @@ class UserTest extends TestCase
 
         $this->assertDatabaseHas('users', $data);
     }
-    public function test_register_user_failed()
+    
+    public function test_register_user_failed_validator()
+    {
+        $data = [
+            'name' => 'Leo',
+            'email' => 'leo@gmail.com',
+            'pssword' => '123',
+            'planType' => 'Gratuito',
+            'goal' => 'Subir peso',
+        ];
+
+        $response = $this->post('api/register', $data);
+
+        $response
+            ->assertJson(['success' => false]);
+
+        $this->assertDatabaseHas('users', $data);
+    }
+
+    public function test_register_user_failed_save()
     {
         $data = [
             'name' => 'Leo',
@@ -52,14 +71,14 @@ class UserTest extends TestCase
             'weight' => 55.0,
             'height' => 172.0,
             'planType' => 'Gratuito',
-            'goal' => 'Subir peso',
+            'goal' => '',
         ];
 
         $response = $this->post('api/register', $data);
 
         $response
-            ->assertStatus(201)
-            ->assertJson(['success' => true]);
+            ->assertStatus(400)
+            ->assertJson(['success' => false]);
 
         $this->assertDatabaseHas('users', $data);
     }
