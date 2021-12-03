@@ -28,7 +28,7 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            $variableJson = redirect('post/register')
+            $variableJson = redirect('api/register')
                 ->withErrors($validator, 'register')
                 ->withInput();
         } else {
