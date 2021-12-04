@@ -28,9 +28,14 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            $variableJson = redirect('api/register')
-                ->withErrors($validator, 'register')
-                ->withInput();
+            // $variableJson = redirect('api/register')
+            //     ->withErrors($validator, 'register')
+            //     ->withInput();
+            $variableJson = response()->json([
+                'success' => false,
+                'message' => 'Error',
+                'validator' => $validator
+            ]);
         } else {
             $user = new User();
             $user->name = $request->post('name');
@@ -53,7 +58,7 @@ class UserController extends Controller
                 ]);
             }
         }
-        
+
         return $variableJson;
     }
 

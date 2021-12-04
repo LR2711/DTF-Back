@@ -57,24 +57,24 @@ class UserTest extends TestCase
         $response->redirect('api/register');
     }
 
-    public function test_register_user_failed_save()
-    {
-        $data = [
-            'name' => 'Leo',
-            'email' => 'leo@gmail.com',
-            'pssword' => '123',
-            'weight' => 55.0,
-            'height' => 172.0,
-            'planType' => 'Gratuito',
-            'goal' => '',
-        ];
+    // public function test_register_user_failed_save()
+    // {
+    //     $data = [
+    //         'name' => 'Leo',
+    //         'email' => 'leo@gmail.com',
+    //         'pssword' => '123',
+    //         'weight' => 55.0,
+    //         'height' => 172.0,
+    //         'planType' => 'Gratuito',
+    //         'goal' => '',
+    //     ];
 
-        $response = $this->post('api/register', $data);
+    //     $response = $this->post('api/register', $data);
 
-        $response->assertJson(['success' => false]);
+    //     $response->assertJson(['success' => false]);
 
-        $this->assertDatabaseHas('users', $data);
-    }
+    //     $this->assertDatabaseHas('users', $data);
+    // }
 
     // public function test_login_user()
     // {
