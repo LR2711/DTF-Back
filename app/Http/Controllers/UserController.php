@@ -28,13 +28,10 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            // $variableJson = redirect('api/register')
-            //     ->withErrors($validator, 'register')
-            //     ->withInput();
             $variableJson = response()->json([
                 'success' => false,
                 'message' => 'Error',
-                'validator' => $validator
+                'validator' => $validator->errors()
             ]);
         } else {
             $user = new User();
@@ -64,7 +61,7 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        $input = $request->only('email', 'pssword');
+        $input = $request->only('email', 'password');
         $jwt_token = null;
         if (!$jwt_token = JWTAuth::attempt($input)) {
             return response()->json([
@@ -80,6 +77,36 @@ class UserController extends Controller
             'token' => $jwt_token,
             'user' => $user
         ]);
+
+        //OTRA OPCIÓN
+        // if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
+        //     $user = Auth::user();
+        //     $success['token'] = $user->createToken('appToken')->accessToken;
+        //     //After successfull authentication, notice how I return json parameters
+        //     return response()->json([
+        //         'success' => true,
+        //         'token' => $success,
+        //         'user' => $user
+        //     ]);
+        // } else {
+        //     //if authentication is unsuccessfull, notice how I return json parameters
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'Invalid Email or Password',
+        //     ], 401);
+        // }
+
+        //OTRA OPCIÓN
+        // $credentials = request(['email', 'password']);
+
+        // if (! $token = auth()->attempt($credentials)) {
+        //     return response()->json(['error' => 'Unauthorized'], 401);
+        // }
+
+        // return response()->json([
+        //     'access_token' => $token,
+        //     'token_type' => 'bearer',
+        // ]);
     }
     public function logout(Request $request)
     {

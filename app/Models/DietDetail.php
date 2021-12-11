@@ -10,18 +10,32 @@ class DietDetail extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'quantity',
+        'time',
+        'day',
+        'comment',
+        'meals_id',
+        'diets_id',
+    ];
+
+    /**
      * Get the DIET record associated with the DIETDETAIL
      */
     public function diet()
     {
-        return $this->belongsTo(Diet::class);
+        return $this->hasOne(Diet::class);
     }
 
     /**
      * Get the MEAL record associated with the DIETDETAIL
      */
-    public function excercise()
+    public function meal()
     {
-        return $this->belongsTo(Meal::class);
+        return $this->hasOne(Meal::class);
     }
 }

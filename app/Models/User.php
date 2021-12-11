@@ -20,14 +20,14 @@ class User extends Authenticatable implements JWTSubject
      * @var string[]
      */
     protected $fillable = [
-        'nameU',
-        'surnameU',
-        'emailU',
-        'psswordU',
-        'weightU',
-        'heightU',
-        'planTypeU',
-        'goalU',
+        'name',
+        'surname',
+        'email',
+        'password',
+        'weight',
+        'height',
+        'planType',
+        'goal',
     ];
 
     /**
@@ -49,11 +49,6 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-    // public function getRouteKey()
-    // {
-    //     return "slug";
-    // }
-
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -72,6 +67,13 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public static function checkToken($token){
+        if($token->token){
+            return true;
+        }
+        return false;
     }
 
     public static function getCurrentUser($request){
@@ -93,5 +95,19 @@ class User extends Authenticatable implements JWTSubject
     public static function find($id)
     {
         return static::where(compact('id'));
+    }
+
+    /**
+     * Get the ROUTINE record associated with the USER
+     */
+    public function routines() {
+        return $this->belongsToMany(Routine::class);
+    }
+
+	/**
+     * Get the DIET record associated with the USER
+     */
+    public function diet() {
+        return $this->belongsToMany(Diet::class);
     }
 }

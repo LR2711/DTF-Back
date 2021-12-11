@@ -9,12 +9,19 @@ class Routine extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'start_date',
+        'end_date',
+        'user_id',
+        'trainer_id'
+    ];
+
     /**
      * Get the USER record associated with the ROUTINE
      */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
     }
 
     /**
@@ -22,6 +29,6 @@ class Routine extends Model
      */
     public function trainer()
     {
-        return $this->belongsTo(Trainer::class);
+        return $this->hasOne(Trainer::class);
     }
 }

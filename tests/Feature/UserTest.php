@@ -52,9 +52,15 @@ class UserTest extends TestCase
             'goal' => 'Subir peso',
         ];
 
+        // $response = $this->post('api/register', $data);
+
+        // $response->redirect('api/register');
+
         $response = $this->post('api/register', $data);
 
-        $response->redirect('api/register');
+        $response->assertJson(['success' => false]);
+
+        // $this->assertDatabaseHas('users', $data);
     }
 
     // public function test_register_user_failed_save()
