@@ -24,7 +24,8 @@ class CreateUsersTable extends Migration
             $table->float('height', 5, 2)->required();
             $table->enum('planType', ['GRATUITO', 'PAGO'])->default('Gratuito');
             $table->enum('goal', ['MANTENERSE', 'BAJAR_PESO', 'AUMENTAR_MASA'])->required();
-            $table->rememberToken()->nullable();
+            // $table->rememberToken()->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

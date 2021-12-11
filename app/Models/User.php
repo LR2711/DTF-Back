@@ -69,15 +69,17 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public static function checkToken($token){
-        if($token->token){
+    public static function checkToken($token)
+    {
+        if ($token->token) {
             return true;
         }
         return false;
     }
 
-    public static function getCurrentUser($request){
-        if(!User::checkToken($request)){
+    public static function getCurrentUser($request)
+    {
+        if (!User::checkToken($request)) {
             return response()->json([
                 'message' => 'Token is required'
             ], 422);
@@ -100,14 +102,16 @@ class User extends Authenticatable implements JWTSubject
     /**
      * Get the ROUTINE record associated with the USER
      */
-    public function routines() {
+    public function routines()
+    {
         return $this->belongsToMany(Routine::class);
     }
 
-	/**
+    /**
      * Get the DIET record associated with the USER
      */
-    public function diet() {
+    public function diet()
+    {
         return $this->belongsToMany(Diet::class);
     }
 }
