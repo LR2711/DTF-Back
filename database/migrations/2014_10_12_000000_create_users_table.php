@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email', 50)->unique()->required();
             // $table->string('slug'); //PENDIENTE
             // $table->timestamp('email_verified_at')->nullable();
-            $table->string('password', 270)->required();
+            $table->string('password', 270)->required(); 
             $table->float('weight', 5, 2)->required(); 
             $table->float('height', 5, 2)->required();
             $table->enum('planType', ['GRATUITO', 'PAGO'])->default('Gratuito');
