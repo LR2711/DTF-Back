@@ -21,11 +21,11 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:100',
             'email'  => 'required|email|unique:users|max:50',
-            'pssword' => 'required|max:50',
+            'password' => 'required|max:270',
             'weight' => 'required|numeric|between:1.0,999.99',
             'height' => 'required|numeric|between:1.0,999.99',
-            'planType' => 'required|in:Gratuito,Pago',
-            'goal' => 'required|in:Subir peso,Bajar peso,Aumento Masa Muscular'
+            'planType' => 'required|in:GRATUITO,PAGO',
+            'goal' => 'required|in:MANTENERSE,BAJAR_PESO,AUMENTAR_MASA'
         ]);
 
         if ($validator->fails()) {
