@@ -8,6 +8,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Mail;
 use App\Mail\PasswordReset;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -37,7 +38,7 @@ class UserController extends Controller
             $user = new User();
             $user->name = $request->post('name');
             $user->email = $request->post('email');
-            $user->pssword = $request->post('pssword');
+            $user->pssword = Hash::make($request->post('password'));
             $user->weight = $request->post('weight');
             $user->height = $request->post('height');
             $user->planType = $request->post('planType');
@@ -107,6 +108,16 @@ class UserController extends Controller
         //     'access_token' => $token,
         //     'token_type' => 'bearer',
         // ]);
+
+        // $credentials = $request->only('email', 'password');
+        // try {
+        //     if (! $token = JWTAuth::attempt($credentials)) {
+        //         return response()->json(['error' => 'invalid_credentials'], 400);
+        //     }
+        // } catch (JWTException $e) {
+        //     return response()->json(['error' => 'could_not_create_token'], 500);
+        // }
+        // return response()->json(compact('token'));
     }
     public function logout(Request $request)
     {
