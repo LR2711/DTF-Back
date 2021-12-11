@@ -121,30 +121,30 @@ if (!$jwt_token = JWTAuth::attempt($input)) {
     }
     public function logout(Request $request)
     {
-        //     if (!User::checkToken($request)) {
-        //         return response()->json([
-        //             'message' => 'Token is required',
-        //             'success' => false,
-        //         ], 422);
-        //     }
+            if (!User::checkToken($request)) {
+                return response()->json([
+                    'message' => 'Token is required',
+                    'success' => false,
+                ], 422);
+            }
 
-        //     try {
-        //         JWTAuth::invalidate(JWTAuth::parseToken($request->token));
-        //         return response()->json([
-        //             'success' => true,
-        //             'message' => 'User logged out successfully'
-        //         ]);
-        //     } catch (JWTException $exception) {
-        //         return response()->json([
-        //             'success' => false,
-        //             'message' => 'Sorry, the user cannot be logged out'
-        //         ], 500);
-        //     }
-        Auth::user()->tokens->each(function ($token, $key) {
-            $token->delete();
-        });
+            try {
+                JWTAuth::invalidate(JWTAuth::parseToken($request->token));
+                return response()->json([
+                    'success' => true,
+                    'message' => 'User logged out successfully'
+                ]);
+            } catch (JWTException $exception) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Sorry, the user cannot be logged out'
+                ], 500);
+            }
+        // Auth::user()->tokens->each(function ($token, $key) {
+        //     $token->delete();
+        // });
 
-        return response()->json('Successfully logged out');
+        // return response()->json('Successfully logged out');
     }
 
     public function getCurrentUser(Request $request)
