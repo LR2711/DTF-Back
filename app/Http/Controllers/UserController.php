@@ -38,7 +38,7 @@ class UserController extends Controller
             $user = new User();
             $user->name = $request->post('name');
             $user->email = $request->post('email');
-            $user->pssword = Hash::make($request->post('password'));
+            $user->password = Hash::make($request->post('password'));
             $user->weight = $request->post('weight');
             $user->height = $request->post('height');
             $user->planType = $request->post('planType');
