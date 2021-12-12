@@ -24,7 +24,7 @@ class UserController extends Controller
             'password' => 'required|max:270',
             'weight' => 'required|numeric|between:1.0,999.99',
             'height' => 'required|numeric|between:1.0,999.99',
-            'planType' => 'required|in:GRATUITO,PAGO',
+            // 'planType' => 'required|in:GRATUITO,PAGO',
             'goal' => 'required|in:MANTENERSE,BAJAR_PESO,AUMENTAR_MASA'
         ]);
 
