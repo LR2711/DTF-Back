@@ -169,69 +169,69 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $user = User::find($id);
-        $user = User::getCurrentUser($request);
+        // // $user = User::find($id);
+        // $user = User::getCurrentUser($request);
 
-        if (!$user) {
-            return response()->json(['errors' => array(['code' => 404, 'message' => 'No se encuentra un usuario con ese código.'])], 404);
-        }
+        // if (!$user) {
+        //     return response()->json(['errors' => array(['code' => 404, 'message' => 'No se encuentra un usuario con ese código.'])], 404);
+        // }
 
-        $name = $request->input('name');
-        $email = $request->input('email');
-        $pssword = $request->input('pssword');
-        $weight = $request->input('weight');
-        $height = $request->input('height');
-        $planType = $request->input('planType');
-        $goal = $request->input('goal');
+        // $name = $request->input('name');
+        // $email = $request->input('email');
+        // $password = $request->input('pssword');
+        // $weight = $request->input('weight');
+        // $height = $request->input('height');
+        // $planType = $request->input('planType');
+        // $goal = $request->input('goal');
 
-        if ($request->method() === 'PATCH') {
-            $bandera = false;
+        // if ($request->method() === 'PATCH') {
+        //     $bandera = false;
 
-            if ($name) {
-                $user->name = $name;
-                $bandera = true;
-            }
+        //     if ($name) {
+        //         $user->name = $name;
+        //         $bandera = true;
+        //     }
 
-            if ($email) {
-                $user->email = $email;
-                $bandera = true;
-            }
+        //     if ($email) {
+        //         $user->email = $email;
+        //         $bandera = true;
+        //     }
 
 
-            if ($pssword) {
-                $user->pssword = $pssword;
-                $bandera = true;
-            }
+        //     if ($password) {
+        //         $user->pssword = $pssword;
+        //         $bandera = true;
+        //     }
 
-            if ($weight) {
-                $user->weight = $weight;
-                $bandera = true;
-            }
-            if ($height) {
-                $user->height = $height;
-                $bandera = true;
-            }
+        //     if ($weight) {
+        //         $user->weight = $weight;
+        //         $bandera = true;
+        //     }
+        //     if ($height) {
+        //         $user->height = $height;
+        //         $bandera = true;
+        //     }
 
-            if ($planType) {
-                $user->planType = $planType;
-                $bandera = true;
-            }
+        //     if ($planType) {
+        //         $user->planType = $planType;
+        //         $bandera = true;
+        //     }
 
-            if ($goal) {
-                $user->goal = $goal;
-                $bandera = true;
-            }
+        //     if ($goal) {
+        //         $user->goal = $goal;
+        //         $bandera = true;
+        //     }
 
-            if ($bandera) {
-                // Almacenamos en la base de datos el registro.
-                $user->save();
-                return response()->json(['status' => 'ok', 'data' => $user], 200);
-            } else {
-                // Se devuelve un array errors con los errores encontrados y cabecera HTTP 304 Not Modified – [No Modificada] Usado cuando el cacheo de encabezados HTTP está activo
-                // Este código 304 no devuelve ningún body, así que si quisiéramos que se mostrara el mensaje usaríamos un código 200 en su lugar.
-                return response()->json(['errors' => array(['code' => 304, 'message' => 'No se ha modificado ningún dato de user.'])], 304);
-            }
-        }
+        //     if ($bandera) {
+        //         // Almacenamos en la base de datos el registro.
+        //         $user->save();
+        //         return response()->json(['status' => 'ok', 'data' => $user], 200);
+        //     } else {
+        //         // Se devuelve un array errors con los errores encontrados y cabecera HTTP 304 Not Modified – [No Modificada] Usado cuando el cacheo de encabezados HTTP está activo
+        //         // Este código 304 no devuelve ningún body, así que si quisiéramos que se mostrara el mensaje usaríamos un código 200 en su lugar.
+        //         return response()->json(['errors' => array(['code' => 304, 'message' => 'No se ha modificado ningún dato de user.'])], 304);
+        //     }
+        // }
         // $user = $this->getCurrentUser($request);
         // if (!$user) {
         //     return response()->json([
@@ -250,5 +250,24 @@ class UserController extends Controller
         //     'message' => 'Information has been updated successfully!',
         //     'user' => $user
         // ]);
+
+        $user = User::getCurrentUser($request);
+        if (!$user) {
+            return response()->json(['errors' => array(['code' => 404, 'message' => 'No se encuentra un usuario con ese código.'])], 404);
+        }
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = $request->input('pssword');
+        $user->weight = $request->input('weight');
+        $user->height = $request->input('height');
+        $user->planType = $request->input('planType');
+        $user->goal = $request->input('goal');
+        $user->save();
+        return response()->json([
+            'success' => true,
+            'message' => 'Information has been updated successfully!',
+            'user' => $user
+        ]);
+
     }
 }
