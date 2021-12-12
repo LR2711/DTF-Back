@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('password', 270)->required(); 
             $table->float('weight', 5, 2)->required(); 
             $table->float('height', 5, 2)->required();
-            $table->enum('planType', ['GRATUITO', 'PAGO'])->default('GRATUITO');
-            $table->enum('goal', ['MANTENERSE', 'BAJAR_PESO', 'AUMENTAR_MASA'])->required();
+            $table->enum('planType', ['PlanType.GRATUITO', 'PlanType.PAGO'])->default('PlanType.GRATUITO');
+            $table->enum('goal', ['Goal.MANTENERSE', 'Goal.BAJAR_PESO', 'Goal.AUMENTAR_MASA'])->required();
             $table->rememberToken();
             $table->timestamps();
         });
