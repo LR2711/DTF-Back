@@ -17,14 +17,11 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name', 100)->required();
             $table->string('email', 50)->unique()->required();
-            // $table->string('slug'); //PENDIENTE
-            // $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 270)->required(); 
             $table->float('weight', 5, 2)->required(); 
             $table->float('height', 5, 2)->required();
-            $table->enum('planType', ['GRATUITO', 'PAGO'])->default('Gratuito');
+            $table->enum('planType', ['GRATUITO', 'PAGO'])->default('GRATUITO');
             $table->enum('goal', ['MANTENERSE', 'BAJAR_PESO', 'AUMENTAR_MASA'])->required();
-            // $table->rememberToken()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
