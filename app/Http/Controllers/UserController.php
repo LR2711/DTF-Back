@@ -297,7 +297,7 @@ class UserController extends Controller
         // }
         // return json_encode($excercise);
         $user = User::find($user->id);
-        foreach ($user->routine as $routine) {
+        foreach ($user->routines as $routine) {
             $routine->excercises;
         }
         return json_encode($user);
