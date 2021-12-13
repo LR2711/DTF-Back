@@ -287,7 +287,8 @@ class UserController extends Controller
     {
         // $user = $this->getCurrentUser($request);
         $user = User::find($user->id);
-        $user->routines;
+        // $user->routines;
+        $user = User::routines();
         return json_encode($user);
         // return response()->json([
         //     'user' => $user,
