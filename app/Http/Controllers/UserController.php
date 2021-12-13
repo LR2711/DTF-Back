@@ -7,6 +7,7 @@ use App\Models\User;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Mail;
 use App\Mail\PasswordReset;
+use App\Models\Routine;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -286,10 +287,10 @@ class UserController extends Controller
     public function showUserRoutine2(User $user)
     {
         // $user = $this->getCurrentUser($request);
-        $user = User::find($user->id);
+        // $user = User::find($user->id);
         // $user->routines;
-        $user = User::routines();
-        return json_encode($user);
+        // $user = User::routines();
+        // return json_encode($user);
         // return response()->json([
         //     'user' => $user,
         //     'routine' => $user->routines,
@@ -305,6 +306,9 @@ class UserController extends Controller
         //     $routine->excercises;
         // }
         // return json_encode($user);
+        $user = User::find($user->id);
+        $routine = Routine::where('user_id', $user)->get();
+        return json_encode($routine);
     }
 
 }
