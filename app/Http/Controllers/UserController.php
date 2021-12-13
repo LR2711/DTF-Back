@@ -286,21 +286,22 @@ class UserController extends Controller
     public function showUserRoutine2(User $user)
     {
         // $user = $this->getCurrentUser($request);
-        // return response()->json([
-        //     'user' => $user->email,
-        //     'routine' => $user->routines,
-        //     'trainer' => $user->trainer->name
-        // ]);
+        $user = User::find($user->id);
+        return response()->json([
+            'user' => $user->email,
+            'routine' => $user->routines,
+            'trainer' => $user->trainer->name
+        ]);
         // $excercise = Excercise::find($excercise->ide);
         // foreach ($excercise->routines as $routines) {
         //     $routines->user;
         // }
         // return json_encode($excercise);
-        $user = User::find($user->id);
-        foreach ($user->routines as $routine) {
-            $routine->excercises;
-        }
-        return json_encode($user);
+        // $user = User::find($user->id);
+        // foreach ($user->routines as $routine) {
+        //     $routine->excercises;
+        // }
+        // return json_encode($user);
     }
 
 }
