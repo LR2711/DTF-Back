@@ -27,16 +27,23 @@ Route::post('/login', 'App\Http\Controllers\UserController@login');
 Route::get('/user', 'App\Http\Controllers\UserController@getCurrentUser');
 Route::post('/update', 'App\Http\Controllers\UserController@update');
 Route::get('/logout', 'App\Http\Controllers\UserController@logout');
+Route::get('/showUserRoutine', 'App\Http\Controllers\UserController@showUserRoutine');
+Route::get('/showUserRoutine2/{user}', 'App\Http\Controllers\UserController@showUserRoutine2');
 
 /**
  * ROUTINE
  */
-Route::get('/routinesinfo', 'App\Http\Controllers\RoutineController@index');
+Route::get('/showRoutine/{routine}', 'App\Http\Controllers\RoutineController@showRoutine');
 
 /**
  * ROUTINE DETAIL
  */
 
+
+/**
+ * EXCERCISE
+ */
+Route::get('/showExcercise/{excercise}', 'App\Http\Controllers\ExcerciseController@showExcercise');
 
 /**
  * DIET

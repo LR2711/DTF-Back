@@ -58,6 +58,12 @@ class RoutinesController extends Controller
     {
         //
     }
+    public function showRoutine(Routine $routine)
+    {
+        $routine = Routine::find($routine->id);
+        $routine->excercises;
+        return json_encode($routine);
+    }
 
     /**
      * Show the form for editing the specified resource.
