@@ -256,6 +256,7 @@ class UserController extends Controller
         if (!$user) {
             return response()->json(['errors' => array(['code' => 404, 'message' => 'No se encuentra un usuario con ese código.'])], 404);
         }
+        $user= User::find($user->id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = $request->input('pssword');
