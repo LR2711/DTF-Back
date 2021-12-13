@@ -288,7 +288,7 @@ class UserController extends Controller
         // $user = $this->getCurrentUser($request);
         $user = User::find($user->id);
         return response()->json([
-            'user' => $user->email,
+            'user' => $user,
             'routine' => $user->routines,
             'trainer' => $user->trainer->name
         ]);
