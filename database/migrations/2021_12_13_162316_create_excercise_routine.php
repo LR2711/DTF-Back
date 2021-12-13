@@ -20,7 +20,7 @@ class CreateExcerciseRoutine extends Migration
             $table->enum('day', ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']);
             $table->text('comment')->nullable();
             $table->unsignedInteger('excercise_id');
-            $table->foreign('excerciser_id')->references('id')->on('excercises');
+            $table->foreign('excercise_id')->references('id')->on('excercises');
             $table->unsignedInteger('routine_id');
             $table->foreign('routine_id')->references('id')->on('routines');
             $table->timestamps();
