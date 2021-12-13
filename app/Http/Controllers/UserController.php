@@ -252,7 +252,7 @@ class UserController extends Controller
         // ]);
 
         // $user=$this->getCurrentUser($request);
-        $user = User::findByEmail($request->email);
+        $user = $this->User::findByEmail($request->email);
         if (!$user) {
             return response()->json(['errors' => array(['code' => 404, 'message' => 'No se encuentra un usuario con ese código.'])], 404);
         }
