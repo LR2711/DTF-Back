@@ -18,6 +18,14 @@ class Meal extends Model
      */
     public function dietdetail()
     {
-        return $this->belongsTo(DietDetail::class);
+        return $this->hasMany(DietDetail::class);
+    }
+
+    /**
+     * Get the DIET records associated with the MEAL
+     */
+    public function diets()
+    {
+        return $this->belongsToMany(Diet::class);
     }
 }

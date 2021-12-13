@@ -19,10 +19,18 @@ class Excercise extends Model
     ];
 
     /**
-     * Get the ROUTINEDETAIL record associated with the EXCERCISE
+     * Get the ROUTINEDETAIL records associated with the EXCERCISE
      */
-    public function routinedetail()
+    public function routineDetails()
     {
-        return $this->belongsTo(RoutineDetail::class);
+        return $this->hasMany(RoutineDetail::class);
+    }
+
+    /**
+     * Get the ROUTINE records associated with the EXCERCISE
+     */
+    public function routines()
+    {
+        return $this->belongsToMany(Routine::class);
     }
 }

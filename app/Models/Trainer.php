@@ -17,16 +17,18 @@ class Trainer extends Model
     ];
 
     /**
-     * Get the ROUTIEN record associated with the DIET
+     * Get the ROUTINE records associated with the TRAINER
      */
-    public function routines() {
-        return $this->belongsToMany(Routine::class);
+    public function routines()
+    {
+        return $this->hasMany(Routine::class);
     }
 
-	/**
-     * Get the DIET record associated with the USER
+    /**
+     * Get the DIET records associated with the TRAINER
      */
-    public function diet() {
-        return $this->belongsToMany(Diet::class);
+    public function diets()
+    {
+        return $this->hasMany(Diet::class);
     }
 }

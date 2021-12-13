@@ -21,7 +21,7 @@ class Routine extends Model
      */
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -29,6 +29,22 @@ class Routine extends Model
      */
     public function trainer()
     {
-        return $this->hasOne(Trainer::class);
+        return $this->belongsTo(Trainer::class);
+    }
+
+    /**
+     * Get the ROUTINEDETAILS records associated with the ROUTINE
+     */
+    public function routineDetails()
+    {
+        return $this->hasMany(RoutineDetail::class);
+    }
+
+    /**
+     * Get the EXCERCISE records associated with the ROUTINE
+     */
+    public function excercises()
+    {
+        return $this->belongsToMany(Excercise::class);
     }
 }

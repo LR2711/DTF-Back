@@ -28,7 +28,7 @@ class DietDetail extends Model
      */
     public function diet()
     {
-        return $this->hasOne(Diet::class);
+        return $this->belongsTo(Diet::class);
     }
 
     /**
@@ -36,6 +36,6 @@ class DietDetail extends Model
      */
     public function meal()
     {
-        return $this->hasOne(Meal::class);
+        return $this->belongsTo(Meal::class);
     }
 }

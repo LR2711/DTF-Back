@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDietDetailsTable extends Migration
+class CreateDietMeal extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateDietDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('diet_details', function (Blueprint $table) {
+        Schema::create('diet_meal', function (Blueprint $table) {
+            // $table->id();
             $table->integer('quantity');
             $table->enum('day', ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']);
             $table->enum('kind_food', ['Desayuno', 'Almuerzo', 'Cena']);
             $table->text('comment')->nullable();
-            $table->unsignedInteger('meals_id');
-            $table->foreign('meals_id')->references('id')->on('meals');
-            $table->unsignedInteger('diets_id');
-            $table->foreign('diets_id')->references('id')->on('diets');
+            $table->unsignedInteger('diet_id');
+            $table->foreign('diet_id')->references('id')->on('diets');
+            $table->unsignedInteger('meal_id');
+            $table->foreign('meal_id')->references('id')->on('meals');
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ class CreateDietDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diet_details');
+        Schema::dropIfExists('diet_meal');
     }
 }

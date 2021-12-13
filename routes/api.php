@@ -31,7 +31,7 @@ Route::get('/logout', 'App\Http\Controllers\UserController@logout');
 /**
  * ROUTINE
  */
-
+Route::get('/routinesinfo', 'App\Http\Controllers\RoutineController@index');
 
 /**
  * ROUTINE DETAIL

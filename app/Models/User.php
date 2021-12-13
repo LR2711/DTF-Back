@@ -100,18 +100,18 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
-     * Get the ROUTINE record associated with the USER
+     * Get the ROUTINE records associated with the USER
      */
     public function routines()
     {
-        return $this->belongsToMany(Routine::class);
+        return $this->hasMany(Routine::class);
     }
 
     /**
-     * Get the DIET record associated with the USER
+     * Get the DIET records associated with the USER
      */
-    public function diet()
+    public function diets()
     {
-        return $this->belongsToMany(Diet::class);
+        return $this->hasMany(Diet::class);
     }
 }

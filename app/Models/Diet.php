@@ -26,7 +26,7 @@ class Diet extends Model
      */
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -34,6 +34,22 @@ class Diet extends Model
      */
     public function trainer()
     {
-        return $this->hasOne(Trainer::class);
+        return $this->belongsTo(Trainer::class);
+    }
+
+    /**
+     * Get the DIETDETAILS records associated with the DIET
+     */
+    public function dietDetails()
+    {
+        return $this->hasMany(DietDetail::class);
+    }
+
+    /**
+     * Get the MEAL records associated with the DIET
+     */
+    public function meals()
+    {
+        return $this->belongsToMany(Meal::class);
     }
 }

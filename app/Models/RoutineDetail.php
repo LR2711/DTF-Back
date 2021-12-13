@@ -23,7 +23,7 @@ class RoutineDetail extends Model
      */
     public function routine()
     {
-        return $this->hasOne(Routine::class);
+        return $this->belongsTo(Routine::class);
     }
 
     /**
@@ -31,6 +31,6 @@ class RoutineDetail extends Model
      */
     public function excercise()
     {
-        return $this->hasOne(Excercise::class);
+        return $this->belongsTo(Excercise::class);
     }
 }
