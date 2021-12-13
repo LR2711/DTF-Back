@@ -287,11 +287,13 @@ class UserController extends Controller
     {
         // $user = $this->getCurrentUser($request);
         $user = User::find($user->id);
-        return response()->json([
-            'user' => $user,
-            'routine' => $user->routines,
-            'trainer' => $user->trainer->name
-        ]);
+        $user->routines;
+        return json_encode($user);
+        // return response()->json([
+        //     'user' => $user,
+        //     'routine' => $user->routines,
+        //     'trainer' => $user->routines->trainer->name
+        // ]);
         // $excercise = Excercise::find($excercise->ide);
         // foreach ($excercise->routines as $routines) {
         //     $routines->user;
