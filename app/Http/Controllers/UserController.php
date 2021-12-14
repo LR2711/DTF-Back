@@ -279,7 +279,7 @@ class UserController extends Controller
     public function showUserRoutine(Request $request)
     {
         $user = $this->getCurrentUser($request);
-        $routine = $user->routines()->where('user_id', $id)->get();
+        $routine = $user->routines()->where('user_id', $user->id)->get();
         return response()->json([
             // 'user' => $user->email,
             'routine' => $routine,
@@ -322,7 +322,6 @@ class UserController extends Controller
         return response()->json([
             'success' => 'SIU',
             'user' => $user,
-            'user_routine' => $user->routines(),
             'routine' => $routine
         ]);
 
