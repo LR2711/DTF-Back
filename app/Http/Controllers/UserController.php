@@ -276,7 +276,7 @@ class UserController extends Controller
 
     }
 
-    public function showUserRoutine(Request $request)
+    public function showUserRoutineBad(Request $request)
     {
         $user = $this->getCurrentUser($request);
         $routine = $user->routines()->where('user_id', $user->id)->get();
@@ -287,20 +287,19 @@ class UserController extends Controller
         ]);
     }
 
-    public function showUserRoutine2($id) //, Routine $routine
+    public function showUserRoutine($id)
     {
         $user = User::find($id);
         $routine = $user->routines()->where('user_id', $id)->get();
-        // return json_encode($routine);
-        // return $routine;
         return response()->json([
             'success' => 'SIU',
             'user' => $user,
-            'routine' => $routine
+            'routine' => $routine,
+            'trainer' => $user->routine()->trainer->name
         ]);
     }
 
-    public function showUserRoutineC($id) //User $user
+    public function showUserRoutine2($id)
     {
         $routine = Routine::where('routines.user_id', $id)->get();
         return json_encode($routine);

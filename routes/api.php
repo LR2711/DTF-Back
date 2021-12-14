@@ -27,16 +27,14 @@ Route::post('/login', 'App\Http\Controllers\UserController@login');
 Route::get('/user', 'App\Http\Controllers\UserController@getCurrentUser');
 Route::post('/update', 'App\Http\Controllers\UserController@update');
 Route::get('/logout', 'App\Http\Controllers\UserController@logout');
-Route::get('/showUserRoutine', 'App\Http\Controllers\UserController@showUserRoutine');
-Route::get('/showUserRoutineA/{user}', 'App\Http\Controllers\UserController@showUserRoutine2');
-Route::get('/showUserRoutineC/{user}', 'App\Http\Controllers\UserController@showUserRoutineC'); 
+Route::get('/showUserRoutineBad', 'App\Http\Controllers\UserController@showUserRoutineBad');
+Route::get('/showUserRoutine/{user_id}', 'App\Http\Controllers\UserController@showUserRoutine');
+Route::get('/showUserRoutine2/{user_id}', 'App\Http\Controllers\UserController@showUserRoutine2'); 
 
 /**
  * ROUTINE
  */
 Route::post('/createRoutine', 'App\Http\Controllers\RoutineController@store');
-Route::get('/showRoutine/{routine}', 'App\Http\Controllers\RoutineController@showRoutine');
-Route::get('/showUserRoutineB/{routine}', 'App\Http\Controllers\RoutineController@showUserRoutineB'); 
 
 
 /**
