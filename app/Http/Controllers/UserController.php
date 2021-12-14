@@ -321,7 +321,7 @@ class UserController extends Controller
         return response()->json([
             'success' => 'SIU',
             'user' => $user,
-            'user_routine' => $id->routines(),
+            'user_routine' => $user->routines(),
             'routine' => $routine
         ]);
 
