@@ -21,7 +21,6 @@ class Routine extends Model
      */
     public function user()
     {
-        // return $this->belongsTo(User::class);
         return $this->belongsTo('App\Models\User');
     }
 
@@ -30,7 +29,6 @@ class Routine extends Model
      */
     public function trainer()
     {
-        // return $this->belongsTo(Trainer::class);
         return $this->belongsTo('App\Models\Trainer');
     }
 
@@ -39,7 +37,7 @@ class Routine extends Model
      */
     public function routineDetails()
     {
-        return $this->hasMany(RoutineDetail::class);
+        return $this->belongsTo('App\Models\RoutineDetail');
     }
 
     /**
@@ -47,6 +45,6 @@ class Routine extends Model
      */
     public function excercises()
     {
-        return $this->belongsToMany(Excercise::class);
+        return $this->belongsToMany('App\Models\Excercise');
     }
 }

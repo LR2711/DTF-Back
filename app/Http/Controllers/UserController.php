@@ -7,6 +7,7 @@ use App\Models\User;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Mail;
 use App\Mail\PasswordReset;
+use App\Models\Diet;
 use App\Models\Routine;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -294,8 +295,7 @@ class UserController extends Controller
         return response()->json([
             'success' => 'SIU',
             'user' => $user,
-            'routine' => $routine,
-            'trainer' => $routine->trainer()->name
+            'routine' => $routine
         ]);
     }
 
@@ -305,4 +305,20 @@ class UserController extends Controller
         return json_encode($routine);
     }
 
+    public function showUserDiet($user_id)
+    {
+        $user = User::find($user_id);
+        $diet = $user->diets()->where('user_id', $user_id)->get();
+        return response()->json([
+            'success' => 'SIU',
+            'user' => $user,
+            'routine' => $diet
+        ]);
+    }
+
+    public function showUserDiet2($user_id)
+    {
+        $diet = Diet::where('diet.user_id', $user_id)->get();
+        return json_encode($diet);
+    }
 }

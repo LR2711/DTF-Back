@@ -30,6 +30,6 @@ class Trainer extends Model
      */
     public function diets()
     {
-        return $this->hasMany(Diet::class);
+        return $this->hasMany('App\Models\Diet');
     }
 }

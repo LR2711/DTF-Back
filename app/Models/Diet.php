@@ -26,7 +26,7 @@ class Diet extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\Models\User');
     }
 
     /**
@@ -34,7 +34,7 @@ class Diet extends Model
      */
     public function trainer()
     {
-        return $this->belongsTo(Trainer::class);
+        return $this->belongsTo('App\Models\Trainer');
     }
 
     /**
@@ -42,7 +42,7 @@ class Diet extends Model
      */
     public function dietDetails()
     {
-        return $this->hasMany(DietDetail::class);
+        return $this->hasMany('App\Models\DietDetail');
     }
 
     /**
@@ -50,6 +50,6 @@ class Diet extends Model
      */
     public function meals()
     {
-        return $this->belongsToMany(Meal::class);
+        return $this->belongsToMany('App\Models\Meal');
     }
 }

@@ -23,7 +23,7 @@ class Excercise extends Model
      */
     public function routineDetails()
     {
-        return $this->hasMany(RoutineDetail::class);
+        return $this->hasMany('App\Models\RoutineDetail');
     }
 
     /**
@@ -31,6 +31,6 @@ class Excercise extends Model
      */
     public function routines()
     {
-        return $this->belongsToMany(Routine::class);
+        return $this->belongsToMany('App\Models\Routine');
     }
 }

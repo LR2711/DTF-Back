@@ -18,7 +18,7 @@ class Meal extends Model
      */
     public function dietdetail()
     {
-        return $this->hasMany(DietDetail::class);
+        return $this->hasMany('App\Models\DietDetail');
     }
 
     /**
@@ -26,6 +26,6 @@ class Meal extends Model
      */
     public function diets()
     {
-        return $this->belongsToMany(Diet::class);
+        return $this->belongsToMany('App\Models\Diet');
     }
 }
