@@ -289,41 +289,16 @@ class UserController extends Controller
 
     public function showUserRoutine2($id) //, Routine $routine
     {
-        // $user = $this->getCurrentUser($request);
         $user = User::find($id);
-        // $user->routines;
-        // return json_encode($user);
+        // $routine = $user->routines()->where('user_id', $id)->get();
+        $routine = $user->routines(); //ESTA SIRVE
+        return json_encode($routine);
+        // return $routine;
         // return response()->json([
+        //     'success' => 'SIU',
         //     'user' => $user,
-        //     'routine' => $user->routines,
-        //     'trainer' => $user->routines->trainer->name
+        //     'routine' => $routine
         // ]);
-        // $excercise = Excercise::find($excercise->ide);
-        // foreach ($excercise->routines as $routines) {
-        //     $routines->user;
-        // }
-        // return json_encode($excercise);
-        // $user = User::find($user->id);
-        // foreach ($user->routines as $routine) {
-        //     $routine->excercises;
-        // }
-        // return json_encode($user);
-        // $a = User::find($user->id);
-        // $routine = Routine::where('routines.user_id', $user)->get();
-        // // return json_encode($routine);
-        // return $routine;
-        // $user = User::find($user);
-        // $user->routines;
-        // return json_encode($user);
-        $routine = $user->routines()->where('user_id', $id)->get();
-        // $routine = $user->routines(); //ESTA SIRVE
-        // return json_encode($routine);
-        // return $routine;
-        return response()->json([
-            'success' => 'SIU',
-            'user' => $user,
-            'routine' => $routine
-        ]);
 
         // $user = User::find($user->id);
         // $a = $user->routines();
