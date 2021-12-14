@@ -295,7 +295,7 @@ class UserController extends Controller
             'success' => 'SIU',
             'user' => $user,
             'routine' => $routine,
-            'trainer' => $user->routines()->trainer->name
+            'trainer' => $user->routines()->trainer()->name
         ]);
     }
 
