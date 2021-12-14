@@ -38,6 +38,7 @@ class Routine extends Model
     public function routineDetails()
     {
         return $this->belongsTo('App\Models\RoutineDetail');
+        // return $this->belongsTo('App\Models\RoutineDetail', 'routines_id');
     }
 
     /**

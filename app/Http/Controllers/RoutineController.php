@@ -48,16 +48,19 @@ class RoutineController extends Controller
         return json_encode($variableJson);
     }
 
-    public function showUserRoutineDetail($routine_id)
-    {
-        $routine = Routine::find($routine_id);
-        $routine_detail = $routine->routineDetails()->where('routine_details.routines_id', $routine_id)->orderBy('day', 'ASC')->get();
-        return response()->json([
-            'success' => 'SIU',
-            'routine' => $routine,
-            'routine_detail' => $routine_detail
-        ]);
-    }
+    /**
+     * Al no tener clave primaria RutinaDetalle, este no sirve
+     */
+    // public function showUserRoutineDetail($routine_id)
+    // {
+    //     $routine = Routine::find($routine_id);
+    //     $routine_detail = $routine->routineDetails()->where('routine_details.routines_id', $routine_id)->orderBy('day', 'ASC')->get();
+    //     return response()->json([
+    //         'success' => 'SIU',
+    //         'routine' => $routine,
+    //         'routine_detail' => $routine_detail
+    //     ]);
+    // }
 
     public function showUserRoutineDetail2($routine_id)
     {
