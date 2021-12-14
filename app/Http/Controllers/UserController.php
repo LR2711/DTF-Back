@@ -287,10 +287,10 @@ class UserController extends Controller
         ]);
     }
 
-    public function showUserRoutine($id)
+    public function showUserRoutine($user_id)
     {
-        $user = User::find($id);
-        $routine = $user->routines()->where('user_id', $id)->get();
+        $user = User::find($user_id);
+        $routine = $user->routines()->where('user_id', $user_id)->get();
         return response()->json([
             'success' => 'SIU',
             'user' => $user,
@@ -299,9 +299,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function showUserRoutine2($id)
+    public function showUserRoutine2($user_id)
     {
-        $routine = Routine::where('routines.user_id', $id)->get();
+        $routine = Routine::where('routines.user_id', $user_id)->get();
         return json_encode($routine);
     }
 

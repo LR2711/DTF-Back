@@ -21,7 +21,8 @@ class Trainer extends Model
      */
     public function routines()
     {
-        return $this->hasMany(Routine::class);
+        // return $this->hasMany(Routine::class);
+        return $this->hasMany('App\Models\Routine');
     }
 
     /**

@@ -30,7 +30,8 @@ class Routine extends Model
      */
     public function trainer()
     {
-        return $this->belongsTo(Trainer::class);
+        // return $this->belongsTo(Trainer::class);
+        return $this->belongsTo('App\Models\Trainer');
     }
 
     /**
