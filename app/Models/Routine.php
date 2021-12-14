@@ -16,6 +16,11 @@ class Routine extends Model
         'trainer_id'
     ];
 
+    public static function findByUserID($userID)
+    {
+        return static::where(compact('user_id'));
+    }
+
     /**
      * Get the USER record associated with the ROUTINE
      */
