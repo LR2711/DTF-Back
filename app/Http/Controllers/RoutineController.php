@@ -71,9 +71,10 @@ class RoutinesController extends Controller
         $routine->user;
         return json_encode($routine);
     }
-    public function showUserRoutineB(User $user)
+    public function showUserRoutineB(Routine $routine)
     {
-        $routine = User::where(['user_id' => $user])->get();
+        // $routine = User::where(['user_id' => $user])->get();
+        $routine = Routine::find($routine);
         return $routine;
     }
 
