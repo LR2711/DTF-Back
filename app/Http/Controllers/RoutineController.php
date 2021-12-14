@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Routine;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -69,6 +70,11 @@ class RoutinesController extends Controller
         $routine = Routine::find($routine->id)->user;
         $routine->user;
         return json_encode($routine);
+    }
+    public function showUserRoutineB(User $user)
+    {
+        $routine = User::where(['user_id' => $user])->get();
+        return $routine;
     }
 
     /**

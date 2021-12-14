@@ -310,9 +310,10 @@ class UserController extends Controller
         // $routine = Routine::where('routines.user_id', $user)->get();
         // // return json_encode($routine);
         // return $routine;
-        $user = User::find($user);
-        $user->routines;
-        return json_encode($user);
+        // $user = User::find($user);
+        // $user->routines;
+        // return json_encode($user);
+
     }
 
 }

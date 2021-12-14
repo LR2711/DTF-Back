@@ -34,6 +34,7 @@ Route::get('/showUserRoutineA/{user}', 'App\Http\Controllers\UserController@show
  * ROUTINE
  */
 Route::get('/showRoutine/{routine}', 'App\Http\Controllers\RoutineController@showRoutine');
+Route::get('/showUserRoutineB/{user}', 'App\Http\Controllers\RoutineController@showUserRoutineB');
 
 /**
  * ROUTINE DETAIL
