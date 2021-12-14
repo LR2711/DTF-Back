@@ -44,5 +44,6 @@ class RoutineController extends Controller
                 ]);
             }
         }
+        return json_encode($variableJson);
     }
 }
