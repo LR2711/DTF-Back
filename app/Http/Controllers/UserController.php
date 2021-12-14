@@ -290,19 +290,14 @@ class UserController extends Controller
     public function showUserRoutine2($id) //, Routine $routine
     {
         $user = User::find($id);
-        // $routine = $user->routines()->where('user_id', $id)->get();
-        $routine = $user->routines(); //ESTA SIRVE
-        return json_encode($routine);
+        $routine = $user->routines()->where('user_id', $id)->get();
+        // return json_encode($routine);
         // return $routine;
-        // return response()->json([
-        //     'success' => 'SIU',
-        //     'user' => $user,
-        //     'routine' => $routine
-        // ]);
-
-        // $user = User::find($user->id);
-        // $a = $user->routines();
-        // return json_encode($a);
+        return response()->json([
+            'success' => 'SIU',
+            'user' => $user,
+            'routine' => $routine
+        ]);
     }
 
     public function showUserRoutineC($id) //User $user
