@@ -286,10 +286,10 @@ class UserController extends Controller
         ]);
     }
 
-    public function showUserRoutine2(User $user) //, Routine $routine
+    public function showUserRoutine2($id) //, Routine $routine
     {
         // $user = $this->getCurrentUser($request);
-        // $user = User::find($user->id);
+        $user = User::find($id);
         // $user->routines;
         // return json_encode($user);
         // return response()->json([
@@ -314,7 +314,7 @@ class UserController extends Controller
         // $user = User::find($user);
         // $user->routines;
         // return json_encode($user);
-        $routine = $user->routines()->where('user_id', $user)->get();
+        $routine = $user->routines()->where('user_id', $id)->get();
         // $routine = $user->routines(); //ESTA SIRVE
         // return json_encode($routine);
         // return $routine;
