@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Routine;
+use App\Models\RoutineDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -50,7 +51,7 @@ class RoutineController extends Controller
     public function showUserRoutineDetail($routine_id)
     {
         $routine = Routine::find($routine_id);
-        $routine_detail = $routine->routineDetails()->where('routines_id', $routine_id)->orderBy('day', 'ASC')->get();
+        $routine_detail = $routine->routineDetails()->where('routine_details.routines_id', $routine_id)->orderBy('day', 'ASC')->get();
         return response()->json([
             'success' => 'SIU',
             'routine' => $routine,
@@ -60,7 +61,7 @@ class RoutineController extends Controller
 
     public function showUserRoutineDetail2($routine_id)
     {
-        $routine_detail = Routine::where('routines_id', $routine_id)->orderBy('day', 'ASC')->get();
+        $routine_detail = RoutineDetail::where('routine_details.routines_id', $routine_id)->orderBy('day', 'ASC')->get();
         return json_encode($routine_detail);
     }
 }
