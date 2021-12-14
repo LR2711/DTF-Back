@@ -106,7 +106,7 @@ class User extends Authenticatable implements JWTSubject
     public function routines()
     {
         // return $this->hasMany(Routine::class);
-        return $this->hasMany('App\Models\Routines');
+        return $this->hasMany('App\Models\Routine');
     }
 
     /**
