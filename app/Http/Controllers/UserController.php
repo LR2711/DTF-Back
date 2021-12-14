@@ -280,8 +280,8 @@ class UserController extends Controller
     {
         $user = $this->getCurrentUser($request);
         return response()->json([
-            'user' => $user->email,
-            'routine' => $user->routines,
+            // 'user' => $user->email,
+            'routine' => $user->routines(),
             'trainer' => $user->trainer->name
         ]);
     }
