@@ -47,7 +47,19 @@ class RoutineController extends Controller
         return json_encode($variableJson);
     }
 
-    public function showUserRoutineDetail($id)
+    //PENDIENTE
+    public function showUserRoutineTrainer($routine_id)
+    {
+        $routine = Routine::find($routine_id);
+        $trainer = $routine->trainer();
+        return response()->json([
+            'success' => 'SIU',
+            'user' => $routine,
+            'routine' => $trainer
+        ]);
+    }
+
+    public function showUserRoutineDetail($routine_id)
     {
         
     }
