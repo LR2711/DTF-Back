@@ -27,7 +27,7 @@ class RoutineController extends Controller
             ]);
         } else {
             $routine = new Routine();
-            $routine->star_date = $request->post('star_date');
+            $routine->start_date = $request->post('start_date');
             $routine->end_date = $request->post('end_date');
             $routine->user_id = $request->post('user_id');
             $routine->trainer_id = $request->post('trainer_id');
