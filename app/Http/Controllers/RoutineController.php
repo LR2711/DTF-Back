@@ -46,4 +46,11 @@ class RoutineController extends Controller
         }
         return json_encode($variableJson);
     }
+
+    public function showUserRoutineB(Routine $routine)
+    {
+        // $routine = User::where(['user_id' => $user])->get();
+        $routine = Routine::find($routine);
+        return $routine;
+    }
 }
