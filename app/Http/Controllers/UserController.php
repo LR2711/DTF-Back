@@ -291,7 +291,7 @@ class UserController extends Controller
     public function showUserRoutine($user_id)
     {
         $user = User::find($user_id);
-        $routine = $user->routines()->where('user_id', $user_id)->get();
+        $routine = $user->routines()->where('user_id', $user_id)->orderBy('start_date')->get();
         return response()->json([
             'success' => 'SIU',
             'user' => $user,
@@ -301,14 +301,14 @@ class UserController extends Controller
 
     public function showUserRoutine2($user_id)
     {
-        $routine = Routine::where('routines.user_id', $user_id)->get();
+        $routine = Routine::where('routines.user_id', $user_id)->orderBy('start_date')->get();
         return json_encode($routine);
     }
 
     public function showUserDiet($user_id)
     {
         $user = User::find($user_id);
-        $diet = $user->diets()->where('user_id', $user_id)->get();
+        $diet = $user->diets()->where('user_id', $user_id)->orderBy('start_date')->get();
         return response()->json([
             'success' => 'SIU',
             'user' => $user,
@@ -318,7 +318,7 @@ class UserController extends Controller
 
     public function showUserDiet2($user_id)
     {
-        $diet = Diet::where('diets.user_id', $user_id)->get();
+        $diet = Diet::where('diets.user_id', $user_id)->orderBy('start_date')->get();
         return json_encode($diet);
     }
 }
