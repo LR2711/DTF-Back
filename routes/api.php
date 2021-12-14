@@ -38,6 +38,7 @@ Route::get('/showUserDiet2/{user_id}', 'App\Http\Controllers\UserController@show
  */
 Route::post('/createRoutine', 'App\Http\Controllers\RoutineController@store');
 Route::get('/showRoutineDetail/{routine_id}', 'App\Http\Controllers\RoutineController@showUserRoutineDetail');
+Route::get('/showRoutineDetail2/{routine_id}', 'App\Http\Controllers\RoutineController@showUserRoutineDetail2');
 
 /**
  * ROUTINE DETAIL
