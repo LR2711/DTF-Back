@@ -95,10 +95,10 @@ class User extends Authenticatable implements JWTSubject
         return static::where(compact('email'));
     }
 
-    public static function find($id)
-    {
-        return static::where(compact('id'));
-    }
+    // public static function find($id)
+    // {
+    //     return static::where(compact('id'));
+    // }
 
     /**
      * Get the ROUTINE records associated with the USER
