@@ -29,7 +29,9 @@ Route::post('/update', 'App\Http\Controllers\UserController@update');
 Route::get('/logout', 'App\Http\Controllers\UserController@logout');
 Route::get('/showUserRoutineBad', 'App\Http\Controllers\UserController@showUserRoutineBad');
 Route::get('/showUserRoutine/{user_id}', 'App\Http\Controllers\UserController@showUserRoutine');
-Route::get('/showUserRoutine2/{user_id}', 'App\Http\Controllers\UserController@showUserRoutine2'); 
+Route::get('/showUserRoutine2/{user_id}', 'App\Http\Controllers\UserController@showUserRoutine2');
+Route::get('/showUserDiet/{user_id}', 'App\Http\Controllers\UserController@showUserDiet');
+Route::get('/showUserDiet2/{user_id}', 'App\Http\Controllers\UserController@showUserDiet2'); 
 
 /**
  * ROUTINE
