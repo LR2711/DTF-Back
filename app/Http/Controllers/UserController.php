@@ -330,9 +330,9 @@ class UserController extends Controller
         // return json_encode($a);
     }
 
-    public function showUserRoutineC(User $user)
+    public function showUserRoutineC($id) //User $user
     {
-        $routine = Routine::where('routines.user_id', $user)->get();
+        $routine = Routine::where('routines.user_id', $id)->get();
         return $routine;
     }
 
