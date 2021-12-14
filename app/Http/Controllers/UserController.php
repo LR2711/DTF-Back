@@ -279,10 +279,11 @@ class UserController extends Controller
     public function showUserRoutine(Request $request)
     {
         $user = $this->getCurrentUser($request);
+        $routine = $user->routines()->where('user_id', $id)->get();
         return response()->json([
             // 'user' => $user->email,
-            'routine' => $user->routines(),
-            'trainer' => $user->trainer->name
+            'routine' => $routine,
+            // 'trainer' => $user->trainer->name
         ]);
     }
 
