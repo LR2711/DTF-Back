@@ -313,19 +313,19 @@ class UserController extends Controller
         // $user->routines;
         // return json_encode($user);
         // $routine = $user->routines()->where('user_id', $user)->get();
-        // $routine = $user->routines(); //ESTA SIRVE
+        $routine = $user->routines(); //ESTA SIRVE
         // return json_encode($routine);
         // return $routine;
-        // return response()->json([
-        //     'success' => 'SIU',
-        //     'user' => $user,
-        //     'user_routine' => $user->routines(),
-        //     'routine' => $routine
-        // ]);
+        return response()->json([
+            'success' => 'SIU',
+            'user' => $user,
+            'user_routine' => $user->routines(),
+            'routine' => $routine
+        ]);
 
-        $user = User::find($user->id);
-        $a = $user->routines();
-        return json_encode($a);
+        // $user = User::find($user->id);
+        // $a = $user->routines();
+        // return json_encode($a);
     }
 
 }
