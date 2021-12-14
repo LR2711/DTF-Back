@@ -314,8 +314,14 @@ class UserController extends Controller
         // return json_encode($user);
         // $routine = $user->routines()->where('user_id', $user)->get();
         $routine = $user->routines();
-        return json_encode($routine);
+        // return json_encode($routine);
         // return $routine;
+        return response()->json([
+            'success' => 'SIU',
+            'user' => $user,
+            'user_routine' => $user->routines(),
+            'routine' => $routine
+        ]);
     }
 
 }
