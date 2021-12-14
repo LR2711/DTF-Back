@@ -318,7 +318,7 @@ class UserController extends Controller
 
     public function showUserDiet2($user_id)
     {
-        $diet = Diet::where('diet.user_id', $user_id)->get();
+        $diet = Diet::where('diets.user_id', $user_id)->get();
         return json_encode($diet);
     }
 }
