@@ -50,7 +50,7 @@ class RoutineController extends Controller
     public function showUserRoutineDetail($routine_id)
     {
         $routine = Routine::find($routine_id);
-        $routine_detail = $routine->routineDetails()->where('routine_details.routines_id', $routine_id)->orderBy('day', 'ASC')->get();
+        $routine_detail = $routine->routineDetails()->where('routines_id', $routine_id)->orderBy('day', 'ASC')->get();
         return response()->json([
             'success' => 'SIU',
             'routine' => $routine,
