@@ -74,13 +74,13 @@ class UserController extends Controller
         // get the user 
         $user = Auth::user();
 
-        // return response()->json([
-        //     'success' => true,
-        //     'token' => $jwt_token,
-        //     'user' => $user
-        // ]);
+        return response()->json([
+            'success' => true,
+            'token' => $jwt_token,
+            'user' => $user
+        ]);
 
-        return json_encode($user);
+        // return json_encode($user);
 
         //OTRA OPCIÓN
         // if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
@@ -333,7 +333,7 @@ class UserController extends Controller
     public function showUserRoutineC($id) //User $user
     {
         $routine = Routine::where('routines.user_id', $id)->get();
-        return $routine;
+        return json_encode($routine);
     }
 
 }
