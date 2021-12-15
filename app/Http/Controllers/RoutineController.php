@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Excercise;
 use App\Models\Routine;
 use App\Models\RoutineDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class RoutineController extends Controller
@@ -64,7 +66,20 @@ class RoutineController extends Controller
 
     public function showUserRoutineDetail2($routine_id)
     {
-        $routine_detail = RoutineDetail::where('routine_details.routines_id', $routine_id)->orderBy('day', 'ASC')->get();
-        return json_encode($routine_detail);
+        // $routine_detail = RoutineDetail::where('routine_details.routines_id', $routine_id)->orderBy('day', 'ASC')->get();
+        // return response()->json([
+        //     'success' => true,
+        //     'routine_detail' => $routine_detail
+        // ]);
+        $routine_detail = Routine
+            ::join("routine_details", "routine_details.routines_id", "=", "routines.id")
+            ->join("excercises", "excercises.id", "=", "routine_details.excercises_id")
+            ->where("routine_details.routines_id", "=", $routine_id)
+            ->select("*")
+            ->get();
+        return response()->json([
+            'success' => true,
+            'routine_detail' => $routine_detail
+        ]);
     }
 }

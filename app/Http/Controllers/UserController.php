@@ -277,24 +277,23 @@ class UserController extends Controller
 
     }
 
-    public function showUserRoutineBad(Request $request)
-    {
-        $user = $this->getCurrentUser($request);
-        $routine = $user->routines()->where('user_id', $user->id)->get();
-        return response()->json([
-            // 'user' => $user->email,
-            'routine' => $routine,
-            // 'trainer' => $user->trainer->name
-        ]);
-    }
+    // public function showUserRoutineBad(Request $request)
+    // {
+    //     $user = $this->getCurrentUser($request);
+    //     $routine = $user->routines()->where('user_id', $user->id)->get();
+    //     return response()->json([
+    //         // 'user' => $user->email,
+    //         'routine' => $routine,
+    //         // 'trainer' => $user->trainer->name
+    //     ]);
+    // }
 
     public function showUserRoutine($user_id)
     {
         $user = User::find($user_id);
         $routine = $user->routines()->where('routines.user_id', $user_id)->orderBy('start_date', 'DESC')->get();
         return response()->json([
-            'success' => 'SIU',
-            'user' => $user,
+            'success' => true,
             'routine' => $routine
         ]);
     }
@@ -302,7 +301,10 @@ class UserController extends Controller
     public function showUserRoutine2($user_id)
     {
         $routine = Routine::where('routines.user_id', $user_id)->orderBy('start_date', 'DESC')->get();
-        return json_encode($routine);
+        return response()->json([
+            'success' => true,
+            'routine' => $routine
+        ]);
     }
 
     public function showUserDiet($user_id)
@@ -310,15 +312,17 @@ class UserController extends Controller
         $user = User::find($user_id);
         $diet = $user->diets()->where('diets.user_id', $user_id)->orderBy('start_date', 'DESC')->get();
         return response()->json([
-            'success' => 'SIU',
-            'user' => $user,
-            'routine' => $diet
+            'success' => true,
+            'diet' => $diet
         ]);
     }
 
     public function showUserDiet2($user_id)
     {
         $diet = Diet::where('diets.user_id', $user_id)->orderBy('start_date', 'DESC')->get();
-        return json_encode($diet);
+        return response()->json([
+            'success' => true,
+            'diet' => $diet
+        ]);
     }
 }
