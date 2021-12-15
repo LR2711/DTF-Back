@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class DietController extends Controller
 {
-    public function showUserDietDetail2($diet_id)
+    public function showUserDietDetail($diet_id)
     {
         $diet_detail = Diet
             ::join("diet_details", "diet_details.diets_id", "=", "diets.id")
@@ -15,7 +15,7 @@ class DietController extends Controller
             ->where("diet_details.diets_id", "=", $diet_id)
             ->select("diet_details.*", "meals.*")
             ->orderBy("diet_details.day", "ASC")
-            ->orderBy("diet_details.kind_food", "ASC")
+            // ->orderBy("diet_details.kind_food", "ASC")
             ->get();
         return response()->json([
             'success' => true,
