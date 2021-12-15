@@ -48,12 +48,11 @@ Route::get('/showRoutineDetail2/{routine_id}', 'App\Http\Controllers\RoutineCont
 /**
  * EXCERCISE
  */
-Route::get('/showExcercise/{excercise}', 'App\Http\Controllers\ExcerciseController@showExcercise');
 
 /**
  * DIET
  */
-
+Route::get('/showDietDetail/{diet_id}', 'App\Http\Controllers\DietController@showUserDietDetail');
 
 /**
  * DIET DETAIL
