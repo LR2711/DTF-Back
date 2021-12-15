@@ -64,7 +64,7 @@ class RoutineController extends Controller
     //     ]);
     // }
 
-    public function showUserRoutineDetail2($routine_id)
+    public function showUserRoutineDetail($routine_id)
     {
         // $routine_detail = RoutineDetail::where('routine_details.routines_id', $routine_id)->orderBy('day', 'ASC')->get();
         // return response()->json([

@@ -288,17 +288,17 @@ class UserController extends Controller
     //     ]);
     // }
 
-    public function showUserRoutine($user_id)
-    {
-        $user = User::find($user_id);
-        $routine = $user->routines()->where('routines.user_id', $user_id)->orderBy('start_date', 'DESC')->get();
-        return response()->json([
-            'success' => true,
-            'routine' => $routine
-        ]);
-    }
+    // public function showUserRoutine($user_id)
+    // {
+    //     $user = User::find($user_id);
+    //     $routine = $user->routines()->where('routines.user_id', $user_id)->orderBy('start_date', 'DESC')->get();
+    //     return response()->json([
+    //         'success' => true,
+    //         'routine' => $routine
+    //     ]);
+    // }
 
-    public function showUserRoutine2($user_id)
+    public function showUserRoutine($user_id)
     {
         $routine = Routine::where('routines.user_id', $user_id)->orderBy('start_date', 'DESC')->get();
         return response()->json([
@@ -307,17 +307,17 @@ class UserController extends Controller
         ]);
     }
 
-    public function showUserDiet($user_id)
-    {
-        $user = User::find($user_id);
-        $diet = $user->diets()->where('diets.user_id', $user_id)->orderBy('start_date', 'DESC')->get();
-        return response()->json([
-            'success' => true,
-            'diet' => $diet
-        ]);
-    }
+    // public function showUserDiet($user_id)
+    // {
+    //     $user = User::find($user_id);
+    //     $diet = $user->diets()->where('diets.user_id', $user_id)->orderBy('start_date', 'DESC')->get();
+    //     return response()->json([
+    //         'success' => true,
+    //         'diet' => $diet
+    //     ]);
+    // }
 
-    public function showUserDiet2($user_id)
+    public function showUserDiet($user_id)
     {
         $diet = Diet::where('diets.user_id', $user_id)->orderBy('start_date', 'DESC')->get();
         return response()->json([
