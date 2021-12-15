@@ -14,7 +14,7 @@ class DietController extends Controller
             ->join("meals", "meals.id", "=", "diet_details.meals_id")
             ->where("diet_details.diets_id", "=", $diet_id)
             ->select("diet_details.*", "meals.*")
-            ->orderBy("diet_details.day", "ASC")
+            // ->orderBy("diet_details.day", "ASC")
             // ->orderBy("diet_details.kind_food", "ASC")
             ->get();
         return response()->json([
