@@ -75,8 +75,7 @@ class RoutineController extends Controller
             ::join("routine_details", "routine_details.routines_id", "=", "routines.id")
             ->join("excercises", "excercises.id", "=", "routine_details.excercises_id")
             ->where("routine_details.routines_id", "=", $routine_id)
-            // ->select("routine_details.*", "excercises.*")
-            ->select("*")
+            ->select("routine_details.*", "excercises.*")
             // ->orderBy("routine_details.day", "ASC")
             ->get();
         return response()->json([
